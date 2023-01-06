@@ -20,22 +20,22 @@ public class BoardDAOImpl implements BoardDAO {
 //상세페이지
 	@Override
 	public BoardDTO boarDetail(int no) throws Exception {
-		return sqlSession.selectOne("board.boardDetail");
+		return sqlSession.selectOne("board.boardDetail" ,no);
 	}
 //글추가
 	@Override
 	public void boardInset(BoardDTO dto) throws Exception {
-		sqlSession.insert("board.boardInsert");
+		sqlSession.insert("board.boardInsert", dto);
 	}
 //글삭제
 	@Override
 	public void boardDelete(int no) throws Exception {
-		sqlSession.delete("board.boardDelete");
+		sqlSession.delete("board.boardDelete", no);
 	}
 //글수정
 	@Override
 	public void boardEdit(BoardDTO dto) throws Exception {
-		sqlSession.update("board.boardEdit");
+		sqlSession.update("board.boardEdit", dto);
 	}
 
 }

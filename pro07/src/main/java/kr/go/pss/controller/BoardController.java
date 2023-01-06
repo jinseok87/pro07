@@ -24,23 +24,23 @@ public class BoardController {
 	public String getboardList(Model model) throws Exception{
 		List<BoardDTO> boardList = boardService.boardList();
 		model.addAttribute("boardList",boardList);
-		return "board/boardList";
+		return "board/list";
 	}
 //	상세페이지
 	@GetMapping("detail")
 	public String getboardDetail(HttpServletRequest request,Model model)throws Exception{
 		int no = Integer.parseInt(request.getParameter("no"));
-		BoardDTO dto = new BoardDTO();
+		BoardDTO dto = boardService.boarDetail(no);
 		model.addAttribute("dto", dto);
-		return "board/boadrDetail";
+		return "board/detail";
 	}
 //	수정페이지
 	@GetMapping("edit")
 	public String editForm(HttpServletRequest request, Model model)throws Exception{
 		int no = Integer.parseInt(request.getParameter("no"));
-		BoardDTO dto = new BoardDTO();
+		BoardDTO dto = boardService.boarDetail(no);
 		model.addAttribute("dto",dto);
-		return "board/boardEdit";
+		return "board/edit";
 	}
 	
 //수정
@@ -58,6 +58,5 @@ public class BoardController {
 		int no = Integer.parseInt(request.getParameter("no"));
 		boardService.boardDelete(no);
 		return "redirect:List";
-		
 	}
 }

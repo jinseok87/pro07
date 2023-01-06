@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:set var="path1" value="${pageContex.request.contextPath }"></c:set>
+<c:set var="path1" value="${pageContex.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +26,7 @@
 	font-size: 2vw;
 	margin-top: 4vw;
 }
+
 </style>
 </head>
 <body>
@@ -46,9 +47,12 @@
 				<c:forEach items="${boardList}" var="board">
 					<tr>
 						<td>${board.no }</td>
-						<td>${board.title }</td>
+						<td><a href="./detail?no=${board.no }"> ${board.title }</a></td>
 						<td>${board.writer }</td>
-						<td><fmt:parseDate value="${board.regdate }" var="regDate" pattrtn="yy-MM-dd HH:mm:ss" /> <fmt:parseDate value="${regDate }" pattern="yyyy-MM-dd" /></td>
+						<td>
+						<fmt:parseDate value="${board.regdate }" var="boardDate" pattern="yyyy-MM-dd HH:mm:ss" /> 
+						<fmt:formatDate value="${boardDate }" pattern="yy-MM-dd" />
+						</td>
 						<td>${board.visited }</td>
 					</tr>
 				</c:forEach>

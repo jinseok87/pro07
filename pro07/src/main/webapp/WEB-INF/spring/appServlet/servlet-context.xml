@@ -16,6 +16,7 @@
 	<resources mapping="/resources/**" location="/resources/*" />
 	
 	<resources mapping="/board/**" location="/WEB-INF/views/board" />
+	<resources mapping="/member/**" location="/WEB-INF/views/member" />
 	
 
 

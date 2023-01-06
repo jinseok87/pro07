@@ -1,57 +1,57 @@
-package kr.go.pss.dao;
+package kr.go.pss.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import kr.go.pss.dao.MemberDAO;
 import kr.go.pss.dto.MemberDTO;
-@Repository
-public class MemberDAOImpl implements MemberDAO {
+
+@Service
+public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	SqlSession sqlSession;
-	
+	MemberDAO memberdao;
+
 	@Override
 	public List<MemberDTO> memberList() throws Exception {
-
-		return sqlSession.selectList("member.memberList");
+		return memberdao.memberList();
 	}
 
 	@Override
 	public MemberDTO memberDetail(String id) throws Exception {
-		return sqlSession.selectOne("member.memberDetail",id);
+		return memberdao.memberDetail(id);
 	}
 
 	@Override
 	public void memberDelete(String id) throws Exception {
-		sqlSession.delete("member.memberDelete",id);
+		memberdao.memberDelete(id);
 	}
 
 	@Override
 	public void memberInsert(MemberDTO dto) throws Exception {
-		sqlSession.insert("member.memberInsert",dto);
+		memberdao.memberInsert(dto);
 	}
 
 	@Override
 	public void memberEdit(MemberDTO dto) throws Exception {
-		sqlSession.update("member.memberEdit",dto);
+		memberdao.memberEdit(dto);
 	}
 
 	@Override
 	public MemberDTO login(MemberDTO dto) throws Exception {
-		return sqlSession.selectOne("member.login",dto);
+		return memberdao.login(dto);
 	}
 
 	@Override
 	public MemberDTO loginCheck(MemberDTO dto) throws Exception {
-		return  sqlSession.selectOne("member.loginCheck",dto);
+		return memberdao.loginCheck(dto);
 	}
 
 	@Override
 	public MemberDTO ajaxLogin(MemberDTO dto) throws Exception {
-		return sqlSession.selectOne("member.ajaxLogin",dto);
+		return memberdao.ajaxLogin(dto);
 	}
 
 }
